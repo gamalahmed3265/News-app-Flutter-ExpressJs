@@ -30,3 +30,27 @@ router.get("/", async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 });
+
+router.post("/", async (req, res) => {
+  const { title, description, imageUrl, content, category } = req.body;
+  if (!title || !content || !category) {
+    return res.status(400).json({
+      success: false,
+      message: "Title, content and category are required",
+    });
+  }
+  try {
+    const news = await News.create({
+      title,
+      description,
+      imageUrl,
+      content,
+      category,
+    });
+    res.status(201).json({ success: true, data: savedNews });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+module.exports = router;
