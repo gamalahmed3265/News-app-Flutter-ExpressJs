@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class NewsProviders with ChangeNotifier {
   List<NewModel> _news = [];
   List<CategoryModel> _categories = [];
-  String _selectedCategory = 'general';
+  String _selectedCategory = 'all';
   bool _isLoading = false;
   List<NewModel> get news => _news;
   List<CategoryModel> get categories => _categories;
@@ -18,6 +18,8 @@ class NewsProviders with ChangeNotifier {
     notifyListeners();
     try {
       _categories = await NewsService.getCategires();
+      print("object");
+      print(_categories);
     } catch (e) {
       print(e);
     }

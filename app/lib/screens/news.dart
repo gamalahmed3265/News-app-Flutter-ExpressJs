@@ -26,7 +26,10 @@ class _NewsscreenState extends State<Newsscreen> {
       appBar: _buildAppBar(),
       body: Consumer<NewsProviders>(builder: (context, newsProvider, child) {
         return newsProvider.isLoading
-            ? Center(child: CircularProgressIndicator())
+            ? Center(
+                child: CircularProgressIndicator(
+                backgroundColor: Colors.red,
+              ))
             : ListView.builder(
                 itemCount: newsProvider.news.length,
                 itemBuilder: (context, index) {
