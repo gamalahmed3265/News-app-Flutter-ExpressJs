@@ -9,7 +9,7 @@ class NewsService {
 
   static Future<List<CategoryModel>> getCategires() async {
     final response =
-        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+        await http.get(Uri.parse('http://10.0.2.2:4500/api/categories'));
     print("-------------------  ");
     print(response.body);
     if (response.statusCode == 200) {
