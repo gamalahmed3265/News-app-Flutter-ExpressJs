@@ -16,7 +16,7 @@ const newsSchema = new mongoose.Schema(
       type: String,
     },
     category: {
-      type: Date,
+      type: String,
       enum: ["technology", "science", "sports", "health", "entertainment"],
       required: [true, "Please provide a category"],
     },

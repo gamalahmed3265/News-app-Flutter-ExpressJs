@@ -1,0 +1,122 @@
+[
+  {
+    "title": "AI Breakthrough in Healthcare",
+    "description": "AI is improving diagnostics and patient care in hospitals.",
+    "content": "Recent advancements in AI are enabling faster and more accurate diagnosis of diseases.",
+    "imageUrl": "https://www.counterpunch.org/wp-content/uploads/2025/03/artcenter2-scaled.jpg",
+    "category": "technology",
+    "source": "Tech Insider"
+  },
+  {
+    "title": "NASA Discovers New Exoplanet",
+    "description": "A new Earth-like planet has been discovered in the habitable zone.",
+    "content": "Scientists believe the planet could have the right conditions for sustaining life.",
+    "imageUrl": "https://www.counterpunch.org/wp-content/uploads/2025/03/artcenter2-scaled.jpg",
+    "category": "science",
+    "source": "NASA"
+  },
+  {
+    "title": "Football World Cup Final Ends in Drama",
+    "description": "An intense match ended in a penalty shootout.",
+    "content": "The final match kept fans on the edge of their seats as both teams fought till the end.",
+    "imageUrl": "https://www.counterpunch.org/wp-content/uploads/2025/03/artcenter2-scaled.jpg",
+    "category": "sports",
+    "source": "ESPN"
+  },
+  {
+    "title": "New Cancer Treatment Shows Hope",
+    "description": "A breakthrough drug may help in treating cancer more effectively.",
+    "content": "Early trials of the new treatment show promising results in reducing tumor growth.",
+    "imageUrl": "https://www.counterpunch.org/wp-content/uploads/2025/03/artcenter2-scaled.jpg",
+    "category": "health",
+    "source": "Medical Journal"
+  },
+  {
+    "title": "Oscar Awards 2025: Surprise Wins",
+    "description": "Unexpected winners dominate this year’s Oscars.",
+    "content": "A night full of surprises as underdog movies take home major awards.",
+    "imageUrl": "https://www.counterpunch.org/wp-content/uploads/2025/03/artcenter2-scaled.jpg",
+    "category": "entertainment",
+    "source": "Hollywood Times"
+  },
+  {
+    "title": "Tesla Unveils New Electric Car Model",
+    "description": "The latest model boasts improved battery life and performance.",
+    "content": "Tesla's newest electric vehicle aims to set new industry standards.",
+    "imageUrl": "https://www.counterpunch.org/wp-content/uploads/2025/03/artcenter2-scaled.jpg",
+    "category": "technology",
+    "source": "Tech World"
+  },
+  {
+    "title": "Mars Rover Sends New Images",
+    "description": "NASA's rover captures stunning images from Mars.",
+    "content": "The new photos provide insight into the planet's surface composition.",
+    "imageUrl": "https://www.counterpunch.org/wp-content/uploads/2025/03/artcenter2-scaled.jpg",
+    "category": "science",
+    "source": "Space News"
+  },
+  {
+    "title": "Olympics 2025: New Records Set",
+    "description": "Athletes break multiple world records in track and field events.",
+    "content": "The Olympics this year showcased extraordinary performances from athletes worldwide.",
+    "imageUrl": "https://www.counterpunch.org/wp-content/uploads/2025/03/artcenter2-scaled.jpg",
+    "category": "sports",
+    "source": "Olympic Channel"
+  },
+  {
+    "title": "Heart Disease Prevention Breakthrough",
+    "description": "Scientists develop a new treatment to prevent heart disease.",
+    "content": "Research suggests that the new drug could significantly reduce heart attack risks.",
+    "imageUrl": "https://www.counterpunch.org/wp-content/uploads/2025/03/artcenter2-scaled.jpg",
+    "category": "health",
+    "source": "Health Today"
+  },
+  {
+    "title": "Streaming Wars Heat Up",
+    "description": "New platforms compete for dominance in online streaming.",
+    "content": "With new streaming services entering the market, competition is fiercer than ever.",
+    "imageUrl": "https://www.counterpunch.org/wp-content/uploads/2025/03/artcenter2-scaled.jpg",
+    "category": "entertainment",
+    "source": "Movie Hub"
+  },
+  {
+    "title": "Apple Introduces Next-Gen MacBook",
+    "description": "The latest MacBook features a powerful new processor.",
+    "content": "Apple has launched a new MacBook model with significant performance upgrades.",
+    "imageUrl": "https://www.counterpunch.org/wp-content/uploads/2025/03/artcenter2-scaled.jpg",
+    "category": "technology",
+    "source": "Gadget Review"
+  },
+  {
+    "title": "SpaceX Announces Moon Mission",
+    "description": "SpaceX plans to send humans back to the Moon.",
+    "content": "The mission will mark the first crewed Moon landing in decades.",
+    "imageUrl": "https://www.counterpunch.org/wp-content/uploads/2025/03/artcenter2-scaled.jpg",
+    "category": "science",
+    "source": "Space Daily"
+  },
+  {
+    "title": "NBA Finals 2025: Intense Battle",
+    "description": "The championship series goes down to the wire.",
+    "content": "Both teams delivered thrilling performances in a closely fought final series.",
+    "imageUrl": "https://www.counterpunch.org/wp-content/uploads/2025/03/artcenter2-scaled.jpg",
+    "category": "sports",
+    "source": "NBA Network"
+  },
+  {
+    "title": "Vaccine Development for New Virus",
+    "description": "Researchers are working on a new vaccine for emerging viruses.",
+    "content": "Efforts are underway to prevent potential pandemics with early vaccine development.",
+    "imageUrl": "https://www.counterpunch.org/wp-content/uploads/2025/03/artcenter2-scaled.jpg",
+    "category": "health",
+    "source": "Medical Research Institute"
+  },
+  {
+    "title": "New Netflix Series Becomes Global Hit",
+    "description": "A new thriller series is trending worldwide.",
+    "content": "The show has captured audiences with its gripping storyline and performances.",
+    "imageUrl": "https://www.counterpunch.org/wp-content/uploads/2025/03/artcenter2-scaled.jpg",
+    "category": "entertainment",
+    "source": "Streaming Weekly"
+  }
+]

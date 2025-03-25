@@ -18,8 +18,6 @@ class NewsProviders with ChangeNotifier {
     notifyListeners();
     try {
       _categories = await NewsService.getCategires();
-      print("object");
-      print(_categories);
     } catch (e) {
       print(e);
     }

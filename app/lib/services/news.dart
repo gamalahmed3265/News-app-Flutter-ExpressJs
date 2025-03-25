@@ -5,13 +5,11 @@ import 'package:http/http.dart' as http;
 import 'package:app/model/news.dart';
 
 class NewsService {
-  static const String baseUrl = 'http://127.0.0.1:4500/api';
+  static const String baseUrl =
+      'https://news-app-flutter-express-js.vercel.app/api';
 
   static Future<List<CategoryModel>> getCategires() async {
-    final response =
-        await http.get(Uri.parse('http://10.0.2.2:4500/api/categories'));
-    print("-------------------  ");
-    print(response.body);
+    final response = await http.get(Uri.parse('$baseUrl/categories'));
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       return List<CategoryModel>.from(
@@ -28,7 +26,7 @@ class NewsService {
       final data = json.decode(response.body);
       return List<NewModel>.from(data["data"].map((x) => NewModel.fromJson(x)));
     } else {
-      throw Exception('Failed to load categories');
+      throw Exception('Failed to load nesws');
     }
   }
 }
