@@ -26,8 +26,8 @@ class NewModel {
       description: json['description'] as String?, // Allow null
       content: json['content'] as String?, // Allow null
       imageUrl: json['imageUrl'] as String?, // Allow null
-      category: json['category'] ?? 'unknown', // Default category
-      source: json['source'] as String?, // Allow null
+      category: json['category'] ?? '', // Default category
+      source: json['source'] ?? "" as String?, // Allow null
       createdAt: DateTime.tryParse(json['createdAt'] ?? '') ??
           DateTime.now(), // Default to now if null
     );
