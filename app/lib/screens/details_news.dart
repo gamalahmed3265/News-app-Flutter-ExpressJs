@@ -54,7 +54,7 @@ class NewsDetailsScreen extends StatelessWidget {
                 child: Image.network(
                   news.imageUrl ?? "",
                   fit: BoxFit.cover,
-                  height: 200,
+                  height: 400,
                   width: double.infinity,
                 ),
               ),

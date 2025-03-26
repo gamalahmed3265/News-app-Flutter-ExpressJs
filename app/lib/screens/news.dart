@@ -13,7 +13,7 @@ class Newsscreen extends StatefulWidget {
 
 class _NewsscreenState extends State<Newsscreen> {
   final controller = ScrollController();
-
+  int page = 1;
   @override
   void initState() {
     super.initState();
@@ -21,6 +21,30 @@ class _NewsscreenState extends State<Newsscreen> {
       final newsProfider = Provider.of<NewsProviders>(context, listen: false);
       newsProfider.fetchCategories();
       newsProfider.fetchNews();
+    });
+    // controller.addListener(() {
+    //   if (controller.position.maxScrollExtent == controller.offset) {
+    //     setState(() {
+
+    //     });
+    //     print("object");
+    //   }
+    // });
+  }
+
+  Future<void> _reshresh() async {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      final newsProfider = Provider.of<NewsProviders>(context, listen: false);
+      newsProfider.fetchCategories();
+      newsProfider.fetchNews();
+    });
+  }
+
+  Future<void> loadingMore() async {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      final newsProfider = Provider.of<NewsProviders>(context, listen: false);
+      newsProfider.fetchCategories();
+      newsProfider.fetchNews(page: 2);
     });
   }
 
@@ -31,42 +55,46 @@ class _NewsscreenState extends State<Newsscreen> {
       body: Consumer<NewsProviders>(builder: (context, newsProvider, child) {
         return newsProvider.isLoading
             ? Center(child: CircularProgressIndicator())
-            : SingleChildScrollView(
-                controller: controller,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildCategoryList(newsProvider),
-                      newsProvider.news.isEmpty
-                          ? _buildWidgetNotFound()
-                          : _buildCardNews(newsProvider.news.first),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      _buildSectionsWithAction("Around The world", "see more",
-                          () {
-                        print("object");
-                      }),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      _buildHorizontalNewList(newsProvider),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      _buildSectionsWithAction("Around The world", "see more",
-                          () {
-                        print("object");
-                      }),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      newsProvider.news.isEmpty
-                          ? _buildWidgetNotFound()
-                          : _buildListBuild(newsProvider.news, controller),
-                    ],
+            : RefreshIndicator(
+                onRefresh: _reshresh,
+                child: SingleChildScrollView(
+                  controller: controller,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildCategoryList(newsProvider),
+                        newsProvider.news.isEmpty
+                            ? _buildWidgetNotFound()
+                            : _buildCardNews(newsProvider.news.first),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        _buildSectionsWithAction("Around The world", "see more",
+                            () {
+                          print("object");
+                        }),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        _buildHorizontalNewList(newsProvider),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        _buildSectionsWithAction("Around The world", "see more",
+                            () {
+                          print("object");
+                        }),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        newsProvider.news.isEmpty
+                            ? _buildWidgetNotFound()
+                            : _buildListBuild(newsProvider.news, controller),
+                        _buildLoading()
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -79,6 +107,31 @@ class _NewsscreenState extends State<Newsscreen> {
       child: Text(
         'No news found',
         style: TextStyle(color: Colors.grey),
+      ),
+    );
+  }
+
+  _buildLoading() {
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue, // Button color
+              foregroundColor: Colors.white, // Text color
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10), // Rounded corners
+              ),
+            ),
+            onPressed: loadingMore,
+            child: Text("Pag 2"),
+          ),
+        ],
       ),
     );
   }
@@ -106,18 +159,21 @@ class _NewsscreenState extends State<Newsscreen> {
 
   _buildCardNews(NewModel news) {
     return Container(
+      height: 150,
+      width: double.infinity,
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-          color: Colors.purple[100], borderRadius: BorderRadius.circular(16)),
+          color: Colors.blue[100], borderRadius: BorderRadius.circular(16)),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             news.title,
             style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.purple[800]),
+                color: Colors.blue[800]),
           )
         ],
       ),
@@ -166,7 +222,7 @@ class _NewsscreenState extends State<Newsscreen> {
         childAspectRatio: 0.9, // Adjust for better fit
       ),
       itemBuilder: (context, index) {
-        return NewsCard(news: news[index]);
+        return _newsCard(news[index]);
       },
     );
   }
@@ -245,81 +301,81 @@ class _NewsscreenState extends State<Newsscreen> {
           ),
         ));
   }
-}
 
-class NewsCard extends StatelessWidget {
-  final NewModel news;
-
-  const NewsCard({Key? key, required this.news}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // News Image
-          ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
-            child: Image.network(
-              news.imageUrl ?? "https://via.placeholder.com/150",
-              height: 200,
-              width: double.infinity,
-              fit: BoxFit.cover,
+  Widget _newsCard(NewModel news) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => NewsDetailsScreen(news: news)));
+      },
+      child: Card(
+        elevation: 4,
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // News Image
+            ClipRRect(
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(12)),
+              child: Image.network(
+                news.imageUrl ?? "https://via.placeholder.com/150",
+                height: 200,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // News Title
-                Text(
-                  news.title,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // News Title
+                  Text(
+                    news.title,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 5),
+                  const SizedBox(height: 5),
 
-                // News Description
-                Text(
-                  news.description ?? "No description available",
-                  style: const TextStyle(fontSize: 14, color: Colors.grey),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 10),
+                  // News Description
+                  Text(
+                    news.description ?? "No description available",
+                    style: const TextStyle(fontSize: 14, color: Colors.grey),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 10),
 
-                // News Category & Source
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Chip(
-                      label: Text(
-                        news.category.toUpperCase(),
-                        style:
-                            const TextStyle(fontSize: 12, color: Colors.white),
+                  // News Category & Source
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Chip(
+                        label: Text(
+                          news.category.toUpperCase(),
+                          style: const TextStyle(
+                              fontSize: 12, color: Colors.white),
+                        ),
+                        backgroundColor: Colors.blueAccent,
                       ),
-                      backgroundColor: Colors.blueAccent,
-                    ),
-                    Text(
-                      news.source ?? "Unknown Source",
-                      style: const TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ],
+                      Text(
+                        news.source ?? "Unknown Source",
+                        style: const TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

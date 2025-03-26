@@ -19,9 +19,10 @@ class NewsService {
     }
   }
 
-  static Future<List<NewModel>> getNews({String? category}) async {
+  static Future<List<NewModel>> getNews(
+      {String? category = "", int? page = 2}) async {
     final response = await http.get(Uri.parse(
-        '$baseUrl/news${category != null ? '?category=${category.toLowerCase()}' : ''}'));
+        '$baseUrl/news?category=${category != null ? category.toLowerCase() : ""}&page=$page'));
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       return List<NewModel>.from(data["data"].map((x) => NewModel.fromJson(x)));

@@ -25,11 +25,11 @@ class NewsProviders with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchNews({String? category}) async {
+  Future<void> fetchNews({String? category, int? page}) async {
     _isLoading = true;
     notifyListeners();
     try {
-      _news = await NewsService.getNews(category: category);
+      _news = await NewsService.getNews(category: category, page: page);
     } catch (e) {
       print(e);
     }
